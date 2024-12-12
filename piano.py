@@ -9,7 +9,7 @@ total = 0
 count = 0
 
 # list of notes
-piano_notes_list = ['C4','D4','E4','F4','G4','A4','B4','C4','C#4','D#4','F#4','G#4','A#4','Eb']
+piano_notes_list = ['C4','D4','E4','F4','G4','A4','B4','C4','C#4','D#4','F#4','G#4','A#4','Eb4']
 chords_dict = { # list of chords
     'Chord 1 (C E G)': ['C4', 'E4', 'G4'],
     'Chord 2 (D F# A)': ['D4', 'F#4', 'A4'],
@@ -79,7 +79,7 @@ print(note_list)
 print(unique_notes)
 if choice == 'O':
     print(random_note)
-    if unique_notes == random_note:
+    if unique_notes[0] == random_note:
         print("Hooray you played the correct note!")
     else:
         print("You played the wrong note")
