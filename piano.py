@@ -22,8 +22,7 @@ chords_dict = {  # list of chords
 note_list = []
 unique_notes = []
 
-# Global variables to store the generated note and chord
-generated_note = None
+generated_note = None  # sets these global variables as empty
 generated_chord = None
 
 
@@ -80,7 +79,7 @@ def detect_notes():
 
 
 def generate_note():
-    global generated_note  # Make sure to use the global variable
+    global generated_note
     generated_note = random.choice(piano_notes_list)
     note_label.config(text=generated_note)
     return generated_note
@@ -95,43 +94,45 @@ def generate_chord():
 
 
 def check_note():
-    detected_notes = detect_notes()
+    detected_notes = detect_notes()  # gets the unique_note from the function
 
-    if generated_note is not None:
-        if detected_notes[0] == generated_note:
+    if generated_note is not None:  # checks if a note has been generated
+        if detected_notes[0] == generated_note:  # checks if the unique_note is equal to the generated note
             note_label.config(text="You played the correct note!")
         else:
             note_label.config(text="You played the wrong note")
     else:
         note_label.config(text="Please generate a note or chord first.")
 
-    if generated_chord is not None:
-        if detected_notes == generated_chord:
+    if generated_chord is not None:  # checks if a chord has been generated
+        if detected_notes == generated_chord:  # checks if the unique_note is equal to the generated chord
             note_label.config(text="You played the correct chord!")
         else:
             note_label.config(text="You played the wrong chord!")
 
 
+# opens the window
 window = tk.Tk()
 window.title("Piano")
 window.geometry("500x300")
-
+# frame that holds the note_label
 window_frame = tk.Frame(window, bg="white", width=250, height=250)
 window_frame.pack()
-
+# label that displays the note 
 note_label = tk.Label(window_frame, bg="white", text="Notes will appear here", font=("Arial", "15"))
 note_label.pack(pady=50, padx=50)
-
+# button to generate one note
 onenote_button = ttk.Button(window, text="Generate one note", width=20, command=generate_note)
 onenote_button.pack()
-
-multiplenote_button = ttk.Button(window, text="Generate a chord", width=20, command=generate_chord)
-multiplenote_button.pack()
-
+# button to generate a chord
+chord_button = ttk.Button(window, text="Generate a chord", width=20, command=generate_chord)
+chord_button.pack()
+# button to record notes
+record_button = ttk.Button(window, text="Record", command=record_audio, width=20)
+record_button.pack()
+# button to analyze the recording and check the notes played
 checknote_button = ttk.Button(window, text="Check Notes", width=20, command=check_note)
 checknote_button.pack()
 
-record_button = ttk.Button(window, text="Record", command=record_audio, width=20)
-record_button.pack()
 
 window.mainloop()
