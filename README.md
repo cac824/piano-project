@@ -18,8 +18,10 @@ This piano tool allows users to practice and learn notes and chords. The program
   * I plan to refine the note detection and have it detect more complex sets of notes
   * I plan to make it more like a teaching tool that starts with the basics and then gradually brings the user to more complex notes to play
   * I want to add a note visualizer. It shows the note you're supposed to play 
+  * I want to add the ability to toggle to other octaves 
 
 **Problems:** 
   A problem I encountered was the frequencies having NaN and infinite values, and another problem was removing invalid notes without affecting the list of notes
   * Solution: I removed all NaN values and set all infinite values to zero with np.isnan and np.isinf
   * Solution: I used list comprehension to get rid of the invalid notes
+  A problem I encountered was generating notes and chords properly without it changing when you check the notes
